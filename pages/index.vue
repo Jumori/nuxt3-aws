@@ -31,7 +31,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useForm } from 'vee-validate'
-import * as yup from 'yup'
 import { v4 as uuidv4 } from 'uuid'
 import { add } from 'date-fns'
 
@@ -40,6 +39,7 @@ import { InputProps } from '../@types/components/Sys/Input'
 import { useAuthStore } from '../store/auth'
 
 const runtimeConfig = useRuntimeConfig()
+const { $yup } = useNuxtApp()
 const authStore = useAuthStore()
 
 const formFields = ref<InputProps[]>([
@@ -49,14 +49,14 @@ const formFields = ref<InputProps[]>([
     value: '',
     inputmode: 'email',
     type: 'email',
-    rules: yup.string().email().required()
+    rules: $yup.string().email().required()
   },
   {
     name: 'cpf',
     label: 'CPF',
     value: '',
     type: 'text',
-    rules: yup.string().required(),
+    rules: $yup.string().cpf().required(),
     inputmask: 'cpf'
   },
   {
@@ -64,7 +64,7 @@ const formFields = ref<InputProps[]>([
     label: 'Senha',
     value: '',
     type: 'password',
-    rules: yup.string().min(6).required()
+    rules: $yup.string().min(6).required()
   }
 ])
 
@@ -74,7 +74,7 @@ const {
   handleSubmit: handleVeeValidateSubmit,
   meta
 } = useForm({
-  validationSchema: yup.object().shape(
+  validationSchema: $yup.object().shape(
     formFields.value.reduce(
       (acc: { [key: string]: any }, field: InputProps) => {
         if (field.rules) {
