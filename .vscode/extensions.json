@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    // Recommended for Vue projects
+    "Vue.volar",
+    // Map all TODO or FIXME comments in your project
+    "Gruntfuggly.todo-tree",
+    // EditorConfig + ESLint + Prettier for common lint
+    "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    // dotenv syntax highlighting
+    "mikestead.dotenv",
+    // Vuetify snippets
+    "vuetifyjs.vuetify-vscode"
+  ]
+}

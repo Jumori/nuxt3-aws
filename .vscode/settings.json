@@ -1,0 +1,18 @@
+{
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.validate": ["javascript", "typescript", "vue"],
+  "files.associations": {
+    "*.env.dev": "dotenv",
+    "*.env.hml": "dotenv",
+    "*.env.prod": "dotenv"
+  }
+}
