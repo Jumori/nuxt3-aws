@@ -18,6 +18,6 @@
 import { LogoProps } from '../../@types/components/Common/Logo'
 
 const props = withDefaults(defineProps<LogoProps>(), {
-  color: '#00DC82'
+  color: '#FFF'
 })
 </script>
