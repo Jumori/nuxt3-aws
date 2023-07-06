@@ -10,7 +10,19 @@ export default defineNuxtConfig({
 
     head: {
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1'
+      viewport: 'width=device-width, initial-scale=1',
+      link: [
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap'
+        }
+      ]
     }
   },
 
@@ -19,7 +31,7 @@ export default defineNuxtConfig({
     { path: '~/components/Common', pathPrefix: false }
   ],
 
-  css: ['vuetify/lib/styles/main.sass'],
+  css: ['vuetify/lib/styles/main.sass', '~/assets/scss/main.scss'],
 
   modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
 
