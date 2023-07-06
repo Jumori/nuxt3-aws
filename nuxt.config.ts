@@ -21,7 +21,7 @@ export default defineNuxtConfig({
 
   css: ['vuetify/lib/styles/main.sass'],
 
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
 
   build: {
     transpile: ['vuetify']

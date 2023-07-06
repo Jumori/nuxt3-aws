@@ -23,6 +23,7 @@ definePageMeta({
     }
 
     return PAGE_ACTIONS.withoutId.includes(pageAction) && pageId === ''
-  }
+  },
+  middleware: ['auth']
 })
 </script>

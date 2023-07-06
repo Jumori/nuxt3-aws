@@ -32,10 +32,15 @@
 import { onMounted } from 'vue'
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
+import { v4 as uuidv4 } from 'uuid'
+import { add } from 'date-fns'
 
 import { InputProps } from '../@types/components/Sys/Input'
 
+import { useAuthStore } from '../store/auth'
+
 const runtimeConfig = useRuntimeConfig()
+const authStore = useAuthStore()
 
 const formFields = ref<InputProps[]>([
   {
@@ -83,7 +88,7 @@ const {
   )
 })
 
-const fieldBinds = formFields.value.map((field: InputProps) => {
+formFields.value.map((field: InputProps) => {
   return defineComponentBinds(field.name, (state): {} => {
     return {
       validateOnModelUpdate: state.errors.length > 0,
@@ -102,9 +107,16 @@ const handleInput = (value: string, fieldIdx: number) => {
 
 const handleSubmit = handleVeeValidateSubmit(values => {
   alert(JSON.stringify(values, null, 2))
+
+  authStore.setToken({
+    token: uuidv4(),
+    tokenExpirationDate: add(new Date(), { minutes: 30 })
+  })
+
+  navigateTo('/usuarios')
 })
 
 onMounted(() => {
-  console.log(fieldBinds)
+  authStore.$reset()
 })
 </script>
