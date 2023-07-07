@@ -24,6 +24,22 @@
 
         <SysButton type="submit" :disabled="!meta.valid"> Submit </SysButton>
       </v-form>
+
+      <div class="my-6">
+        <ClientOnly>
+          <SysButton
+            type="button"
+            :color="vuetifyTheme.current.value.colors.warning"
+            @click="handleToggleThemes"
+          >
+            {{
+              themeTypeSelected === 'dynamic'
+                ? 'Usar tema padrão'
+                : 'Usar tema dinâmico'
+            }}
+          </SysButton>
+        </ClientOnly>
+      </div>
     </v-container>
   </div>
 </template>
@@ -31,16 +47,20 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useForm } from 'vee-validate'
+import { useTheme } from 'vuetify'
 import { v4 as uuidv4 } from 'uuid'
 import { add } from 'date-fns'
 
 import { InputProps } from '../@types/components/Sys/Input'
 
 import { useAuthStore } from '../store/auth'
+import { useAppStore } from '../store/app'
 
 const runtimeConfig = useRuntimeConfig()
 const { $yup } = useNuxtApp()
+const vuetifyTheme = useTheme()
 const authStore = useAuthStore()
+const appStore = useAppStore()
 
 const formFields = ref<InputProps[]>([
   {
@@ -67,6 +87,7 @@ const formFields = ref<InputProps[]>([
     rules: $yup.string().min(6).required()
   }
 ])
+const themeTypeSelected = ref<'dynamic' | 'default'>('default')
 
 const {
   values,
@@ -114,6 +135,23 @@ const handleSubmit = handleVeeValidateSubmit(values => {
   })
 
   navigateTo('/usuarios')
+})
+
+const handleToggleThemes = () => {
+  if (themeTypeSelected.value === 'dynamic') {
+    appStore.removeRuntimeThemes()
+    themeTypeSelected.value = 'default'
+    return
+  }
+
+  appStore.setRuntimeThemes()
+  themeTypeSelected.value = 'dynamic'
+}
+
+onBeforeMount(() => {
+  if (appStore.runtimeThemes) {
+    themeTypeSelected.value = 'dynamic'
+  }
 })
 
 onMounted(() => {
