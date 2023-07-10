@@ -1,6 +1,4 @@
 import { createVuetify, ThemeDefinition } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
 
 const appDarkTheme: ThemeDefinition = {
   dark: true,
@@ -14,17 +12,15 @@ const appDarkTheme: ThemeDefinition = {
 const appLightTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    surface: '#121214',
     background: '#FFFFFF',
+    surface: '#121214',
     primary: '#00DC82'
   }
 }
 
 export default defineNuxtPlugin(nuxtApp => {
   const vuetify = createVuetify({
-    ssr: true,
-    components,
-    directives,
+    ssr: process.server,
     theme: {
       defaultTheme: 'appDarkTheme',
       themes: {

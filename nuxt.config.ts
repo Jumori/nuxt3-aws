@@ -6,7 +6,10 @@ export default defineNuxtConfig({
   },
 
   app: {
-    cdnURL: process.env.NUXT_APP_CDN_URL,
+    cdnURL:
+      process.env.NODE_ENV === 'development'
+        ? ''
+        : process.env.NUXT_APP_CDN_URL,
 
     head: {
       charset: 'utf-8',
@@ -33,7 +36,11 @@ export default defineNuxtConfig({
 
   css: ['vuetify/lib/styles/main.sass', '~/assets/scss/main.scss'],
 
-  modules: ['@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
+  modules: [
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+    './modules/vuetify.ts'
+  ],
 
   build: {
     transpile: ['vuetify']
