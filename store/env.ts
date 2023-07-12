@@ -1,3 +1,5 @@
+import { defineStore } from 'pinia'
+
 interface EnvState {
   env: string
   apiURL: string

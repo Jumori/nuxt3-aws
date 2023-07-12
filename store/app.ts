@@ -1,3 +1,4 @@
+import { defineStore } from 'pinia'
 import { useTheme } from 'vuetify'
 
 export interface AppState {

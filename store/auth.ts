@@ -1,3 +1,5 @@
+import { defineStore } from 'pinia'
+
 interface AuthState {
   token: string | null
   tokenExpirationDate: Date | null
