@@ -9,10 +9,13 @@
     "postinstall": "nuxt prepare",
     "start": "nuxt start",
     "storybook": "rm -rf node_modules/.cache/storybook && storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest run --config ./__tests__/vitest.config.ts",
+    "test:coverage": "vitest run --coverage --config ./__tests__/vitest.config.ts"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/test-utils": "^3.6.2",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@storybook/addon-essentials": "^7.0.27",
@@ -26,11 +29,14 @@
     "@types/node": "^18",
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/parser": "^5.61.0",
+    "@vitest/coverage-v8": "^0.33.0",
+    "@vue/test-utils": "^2.4.0",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-storybook": "^0.6.12",
     "nuxt": "^3.6.1",
+    "playwright": "^1.36.0",
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -39,7 +45,8 @@
     "typescript": "^5.1.6",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
-    "vite-plugin-vuetify": "^1.0.2"
+    "vite-plugin-vuetify": "^1.0.2",
+    "vitest": "^0.32.4"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
@@ -48,6 +55,7 @@
     "@vee-validate/yup": "^4.10.5",
     "date-fns": "^2.30.0",
     "inputmask": "^5.0.8",
+    "jsdom": "^22.1.0",
     "pinia": "^2.1.4",
     "uuid": "^9.0.0",
     "vee-validate": "^4.10.5",

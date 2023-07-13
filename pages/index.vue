@@ -156,7 +156,5 @@ onBeforeMount(() => {
 
 onMounted(() => {
   authStore.$reset()
-
-  console.log(process.env)
 })
 </script>
