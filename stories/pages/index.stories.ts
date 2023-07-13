@@ -9,13 +9,18 @@ const meta = {
     components: { Index },
     setup() {
       return { args }
-    }
+    },
+    template: `
+      <v-app>
+        <v-main>
+          <Index v-bind="args"/>
+        </v-main>
+      </v-app>
+    `
   }),
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen'
   },
-  // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {}
 } satisfies Meta<typeof Index>

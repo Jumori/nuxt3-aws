@@ -10,13 +10,11 @@ const meta = {
     setup() {
       return { args }
     },
-    template: `<SysButton v-bind="args">Botão</SysButton>`
+    template: `<SysButton v-bind="args">${args.default}</SysButton>`
   }),
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'fullscreen'
   },
-  // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],
   argTypes: {
     loading: {
@@ -44,5 +42,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {}
+  args: {
+    default: 'Botão'
+  }
 }

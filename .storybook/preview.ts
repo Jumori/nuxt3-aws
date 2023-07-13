@@ -1,5 +1,6 @@
 import type { App } from 'vue'
 import { setup, Preview } from '@storybook/vue3'
+import type { Decorator } from '@storybook/vue3'
 
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
@@ -15,7 +16,7 @@ setup((app: App) => {
   app.use(
     createVuetify({
       ...vuetifyConfig,
-      ssr: true,
+      ssr: false,
       components,
       directives,
     })
@@ -31,8 +32,31 @@ const preview: Preview = {
         date: /Date$/
       }
     }
+  },
+  globalTypes: {
+    theme: {
+      description: 'Global theme for components',
+      defaultValue: 'appDarkTheme',
+      toolbar: {
+        title: 'Theme',
+        icon: 'paintbrush',
+        items: [
+          {
+            value: 'appDarkTheme',
+            title: 'Light',
+            left: '🌞'
+          },
+          {
+            value: 'appLightTheme',
+            title: 'Dark',
+            left: '🌛'
+          }
+        ],
+        dynamicTitle: true
+      }
+    }
   }
 }
 
-export const decorators = []
+export const decorators: Decorator[] = []
 export default preview
